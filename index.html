@@ -209,46 +209,52 @@
             padding-top: 80px;
         }
 
-        /* Decorative Parallax Layers */
-        .parallax-layer {
+        .parallax-wrap {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
             z-index: -1;
         }
 
+        /* Positioning Wrappers */
+        .pw-1 {
+            top: 10%;
+            left: -5%;
+        }
+
+        .pw-2 {
+            bottom: 10%;
+            right: -10%;
+        }
+
+        .pw-3 {
+            top: 20%;
+            right: 20%;
+        }
+
         .shape {
-            position: absolute;
+            position: relative;
+            /* Changed from absolute */
             background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(255, 111, 97, 0.1));
             border-radius: 50%;
             filter: blur(40px);
             opacity: 0.6;
+            display: block;
         }
 
         .shape-1 {
             width: 300px;
             height: 300px;
-            top: 10%;
-            left: -5%;
             animation: float 6s ease-in-out infinite;
         }
 
         .shape-2 {
             width: 400px;
             height: 400px;
-            bottom: 10%;
-            right: -10%;
             animation: float 8s ease-in-out infinite reverse;
         }
 
         .shape-3 {
             width: 150px;
             height: 150px;
-            top: 20%;
-            right: 20%;
             border: 2px solid rgba(100, 255, 218, 0.2);
             background: none;
             filter: none;
@@ -294,6 +300,7 @@
             margin-bottom: var(--spacing-md);
             background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -576,17 +583,24 @@
     <!-- HERO SECTION -->
     <section id="hero">
         <div class="parallax-layer">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
+            <div class="parallax-wrap pw-1">
+                <div class="shape shape-1"></div>
+            </div>
+            <div class="parallax-wrap pw-2">
+                <div class="shape shape-2"></div>
+            </div>
+            <div class="parallax-wrap pw-3">
+                <div class="shape shape-3"></div>
+            </div>
         </div>
 
         <div class="container hero-content">
             <span class="hero-subtitle reveal">REMOTE ONLINE NOTARIZATION</span>
             <h1 class="hero-title reveal" style="transition-delay: 100ms;">Notarization at the <br> Speed of Life.</h1>
             <p class="hero-desc reveal" style="transition-delay: 200ms;">
-                Secure, legally binding documents notarized from the comfort of your home or beach chair.
-                Experience the future of verification.
+                a Florida-commissioned notary service dedicated to making notarization easy, accessible, and secure.
+                From real estate closings to affidavits and power of attorney, we handle it all with professionalism and
+                prompt service.
             </p>
             <div class="reveal" style="transition-delay: 300ms;">
                 <a href="#contact" class="btn">Start Notarization</a>
@@ -626,6 +640,48 @@
                             d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
                     </svg>
                     BlueNotary
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why-choose-us" style="padding: var(--spacing-xl) 0; background: var(--bg-deep);">
+        <div class="container">
+            <h2 class="section-title reveal">Why Choose Us?</h2>
+            <ul style="list-style: none; margin-bottom: var(--spacing-md);">
+                <li class="reveal"
+                    style="font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--accent-teal);">•</span> Florida-Commissioned Notary Public
+                </li>
+                <li class="reveal"
+                    style="transition-delay: 100ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--accent-teal);">•</span> Certified Loan Signing Agent
+                </li>
+                <li class="reveal"
+                    style="transition-delay: 200ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--accent-teal);">•</span> Bonded & Insured
+                </li>
+                <li class="reveal"
+                    style="transition-delay: 300ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--accent-teal);">•</span> Secure & Confidential
+                </li>
+                <li class="reveal"
+                    style="transition-delay: 400ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: var(--accent-teal);">•</span> Available 7 Days a Week
+                </li>
+            </ul>
+            <div class="reveal"
+                style="margin-top: var(--spacing-md); display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center;">
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 1rem 2rem; border-radius: var(--radius); border: 1px solid var(--accent-teal);">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">NNA Certified</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">National Notary Association</p>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 1rem 2rem; border-radius: var(--radius); border: 1px solid var(--accent-teal);">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">NNA Notary Signing Agent</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Certified for 2025</p>
                 </div>
             </div>
         </div>
@@ -774,7 +830,33 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Beachside Mobile Notary. All rights reserved.</p>
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
+                <div style="text-align: left;">
+                    <p>&copy; Beachside Notary. All rights reserved.</p>
+                    <p
+                        style="margin-top: 0.5rem; font-size: 0.75rem; max-width: 600px; color: var(--text-secondary); opacity: 0.8;">
+                        We proudly serve clients throughout the state of Florida. Remote notarization is performed in
+                        compliance with Florida Statutes Chapter 117.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                        style="color: var(--text-primary); transition: color 0.3s;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="mailto:info@beachsidenotary.com" aria-label="Email"
+                        style="color: var(--text-primary); transition: color 0.3s;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -801,12 +883,12 @@
 
             // Parallax Effect for Hero Shapes
             const heroSection = document.getElementById('hero');
-            const layers = document.querySelectorAll('.shape');
-            
+            const layers = document.querySelectorAll('.parallax-wrap');
+
             heroSection.addEventListener('mousemove', (e) => {
                 const x = (window.innerWidth - e.pageX * 2) / 100;
                 const y = (window.innerHeight - e.pageY * 2) / 100;
-                
+
                 layers.forEach((layer, index) => {
                     const speed = (index + 1) * 2;
                     layer.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
