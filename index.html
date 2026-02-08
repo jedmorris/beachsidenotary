@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beachside Mobile Notary | Remote Online Notarization</title>
+    <meta name="description"
+        content="Expert Remote Online Notarization services. Secure, fast, and available anywhere. Book your appointment today.">
+    <style>
+        /* 
+         * DESIGN SYSTEM & VARIABLES
+         * "Sleek Tropical / Dark Mode Luxe" 
+         */
+        :root {
+            /* Palette */
+            --bg-deep: #0a192f;
+            /* Deep Navy */
+            --bg-card: #112240;
+            /* Lighter Navy */
+            --accent-teal: #64ffda;
+            /* Electric Teal */
+            --accent-gold: #ffd700;
+            /* Muted Gold */
+            --accent-coral: #ff6f61;
+            /* Coral/Sunset */
+            --text-primary: #ccd6f6;
+            /* Off-white */
+            --text-secondary: #8892b0;
+            /* Muted Slate */
+            --white: #ffffff;
+
+            /* Typography */
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+
+            /* Effects */
+            --radius: 12px;
+            --shadow-subtle: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), transparent);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: 1px solid var(--accent-teal);
+            color: var(--accent-teal);
+            background: transparent;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent-teal);
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            color: var(--bg-deep);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-teal);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--text-primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        nav a:hover {
+            color: var(--accent-teal);
+        }
+
+        @media(max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            /* Simplified for mobile demo */
+        }
+
+        /* HERO SECTION with Parallax */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        /* Decorative Parallax Layers */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(255, 111, 97, 0.1));
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: -10%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 20%;
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            background: none;
+            filter: none;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-teal);
+            font-family: monospace;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SOCIAL PROOF BANNER */
+        #social-proof {
+            padding: var(--spacing-md) 0;
+            background: rgba(17, 34, 64, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-scroller {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            opacity: 0.6;
+        }
+
+        .logo-item {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-item svg {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+
+        /* CASE STUDIES */
+        #case-studies {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .case-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-teal);
+        }
+
+        .case-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .case-card:hover .case-image {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .case-content {
+            padding: var(--spacing-md);
+        }
+
+        .case-badge {
+            font-size: 0.8rem;
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            display: block;
+        }
+
+        .case-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .case-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* HOW IT WORKS */
+        #how-it-works {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-card) 100%);
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            /* Adjust for mobile/desktop alignment */
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--accent-teal);
+            opacity: 0.3;
+        }
+
+        .step-item {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            background: var(--bg-deep);
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .step-content {
+            background: var(--bg-deep);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-subtle);
+            flex: 1;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .step-title {
+            color: var(--accent-teal);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.2rem;
+        }
+
+        /* SERVICES */
+        #services {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .service-card {
+            background: rgba(17, 34, 64, 0.7);
+            padding: var(--spacing-md);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card:hover {
+            background: var(--bg-card);
+            transform: translateY(-5px);
+            border-color: var(--accent-teal);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--accent-teal);
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* GET IN TOUCH */
+        #contact {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            background: radial-gradient(circle at center, var(--bg-card) 0%, var(--bg-deep) 100%);
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .contact-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.1rem;
+        }
+
+        /* ANIMATION UTILS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: var(--spacing-md) 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Beachside<span>Notary</span>.</a>
+            <nav>
+                <ul>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#contact" class="btn"
+                            style="padding: 0.5rem 1rem; border: 1px solid var(--accent-teal);">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="parallax-layer">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="container hero-content">
+            <span class="hero-subtitle reveal">REMOTE ONLINE NOTARIZATION</span>
+            <h1 class="hero-title reveal" style="transition-delay: 100ms;">Notarization at the <br> Speed of Life.</h1>
+            <p class="hero-desc reveal" style="transition-delay: 200ms;">
+                Secure, legally binding documents notarized from the comfort of your home or beach chair.
+                Experience the future of verification.
+            </p>
+            <div class="reveal" style="transition-delay: 300ms;">
+                <a href="#contact" class="btn">Start Notarization</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF BANNER -->
+    <section id="social-proof">
+        <div class="container">
+            <div class="logo-scroller">
+                <!-- Using generic placeholders for tech vibe -->
+                <div class="logo-item">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                    </svg>
+                    DocuSign
+                </div>
+                <div class="logo-item">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                    Notarize
+                </div>
+                <div class="logo-item">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z" />
+                    </svg>
+                    Pavaso
+                </div>
+                <div class="logo-item">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+                    </svg>
+                    BlueNotary
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
+        <div class="container">
+            <h2 class="section-title reveal">Success Stories</h2>
+            <div class="case-grid">
+                <!-- Case 1 -->
+                <article class="case-card reveal" style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="Real Estate" class="case-image">
+                    <div class="case-content">
+                        <span class="case-badge">Real Estate</span>
+                        <h3 class="case-title">The Midnight Closing</h3>
+                        <p class="case-desc">Facilitated a strict deadline closing for an international buyer across 3
+                            time zones in under 30 minutes.</p>
+                    </div>
+                </article>
+                <!-- Case 2 -->
+                <article class="case-card reveal" style="transition-delay: 200ms;">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="Legal" class="case-image">
+                    <div class="case-content">
+                        <span class="case-badge">Legal</span>
+                        <h3 class="case-title">Urgent Power of Attorney</h3>
+                        <p class="case-desc">Empowered a family to handle medical decisions instantly with a secure,
+                            remote POA notarization.</p>
+                    </div>
+                </article>
+                <!-- Case 3 -->
+                <article class="case-card reveal" style="transition-delay: 300ms;">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="Business" class="case-image">
+                    <div class="case-content">
+                        <span class="case-badge">Business</span>
+                        <h3 class="case-title">Tech Startup Funding</h3>
+                        <p class="case-desc">Notarized critical equity documents for a Series A round, keeping their
+                            momentum seamless.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2 class="section-title reveal">How It Works</h2>
+            <div class="steps-container">
+                <div class="step-item reveal">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Book Instantly</h3>
+                        <p>Use our seamless scheduler to pick a time that works for you. No forms, just direct calendar
+                            access.</p>
+                    </div>
+                </div>
+                <div class="step-item reveal">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Upload & Verify</h3>
+                        <p>Securely upload your documents and verify your identity using our bank-grade encryption
+                            platform.</p>
+                    </div>
+                </div>
+                <div class="step-item reveal">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Connect Live</h3>
+                        <p>Meet with your expert notary via video call to sign and notarize your documents in real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title reveal">Expert Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Remote Online Notarization</h3>
+                    <p class="service-desc">Fully digital, secure, and legally binding nationwide.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 100ms;">
+                    <div class="service-icon">🚗</div>
+                    <h3 class="service-title">Mobile Notary Visits</h3>
+                    <p class="service-desc">We come to your home, office, or beachside location.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 200ms;">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Loan Signing Agent</h3>
+                    <p class="service-desc">Specialized support for seamless real estate closings.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 300ms;">
+                    <div class="service-icon">📝</div>
+                    <h3 class="service-title">Real Estate Closings</h3>
+                    <p class="service-desc">Refinances, purchases, HELOCs, and seller packages.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">⚖️</div>
+                    <h3 class="service-title">Power of Attorney & Wills</h3>
+                    <p class="service-desc">Sensitive legal documents handled with care.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 100ms;">
+                    <div class="service-icon">🌍</div>
+                    <h3 class="service-title">Apostille Assistance</h3>
+                    <p class="service-desc">Helping authenticate documents for international use.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 200ms;">
+                    <div class="service-icon">📄</div>
+                    <h3 class="service-title">General Documents</h3>
+                    <p class="service-desc">Business, legal, and personal affidavits.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 300ms;">
+                    <div class="service-icon">💍</div>
+                    <h3 class="service-title">Wedding Officiant</h3>
+                    <p class="service-desc">Making your special day official and legal.</p>
+                </div>
+            </div>
+            <p class="reveal" style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+                Don’t see your document type? Just ask — we’ve likely handled it before.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container contact-box">
+            <h2 class="contact-title reveal">Ready to Sign?</h2>
+            <p class="contact-text reveal">
+                Skip the back-and-forth emails. View our availability and secure your spot instantly.
+            </p>
+            <div class="reveal">
+                <a href="https://cal.com/beachsidemobilenotary" class="btn"
+                    style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Beachside Mobile Notary. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Scroll Reveal Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Parallax Effect for Hero Shapes
+            const heroSection = document.getElementById('hero');
+            const layers = document.querySelectorAll('.shape');
+            
+            heroSection.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth - e.pageX * 2) / 100;
+                const y = (window.innerHeight - e.pageY * 2) / 100;
+                
+                layers.forEach((layer, index) => {
+                    const speed = (index + 1) * 2;
+                    layer.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
