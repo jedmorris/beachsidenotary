@@ -395,6 +395,36 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--color-glass-border);
+            margin-top: 4rem;
+            color: #94a3b8;
+        }
+
+        .footer-social {
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            color: var(--color-text);
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-social a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -579,6 +609,26 @@
             </p>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/profile.php?id=61574585647530" target="_blank"
+                    rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-facebook">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-text">
+                © Beachside Notary. All rights reserved.<br>
+                We proudly serve clients throughout the state of Florida. Remote notarization is performed in compliance
+                with Florida Statutes Chapter 117.
+            </p>
+        </div>
+    </footer>
 
     <script>
         // --- SCROLL REVEAL ANIMATION ---
