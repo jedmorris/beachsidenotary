@@ -4,263 +4,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beachside Mobile Notary | Remote Online Notarization</title>
-    <meta name="description"
-        content="Expert Remote Online Notarization services. Secure, fast, and available anywhere. Book your appointment today.">
+    <title>Beachside Mobile Notary | Florida's Premium Signing Service</title>
     <style>
-        /* 
-         * DESIGN SYSTEM & VARIABLES
-         * "Sleek Tropical / Dark Mode Luxe" 
-         */
+        /* --- VARIABLES & RESET --- */
         :root {
-            /* Palette */
-            --bg-deep: #0a192f;
-            /* Deep Navy */
-            --bg-card: #112240;
-            /* Lighter Navy */
-            --accent-teal: #64ffda;
-            /* Electric Teal */
-            --accent-gold: #ffd700;
-            /* Muted Gold */
-            --accent-coral: #ff6f61;
-            /* Coral/Sunset */
-            --text-primary: #ccd6f6;
-            /* Off-white */
-            --text-secondary: #8892b0;
-            /* Muted Slate */
-            --white: #ffffff;
-
-            /* Typography */
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-            /* Spacing */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 8rem;
-
-            /* Effects */
-            --radius: 12px;
-            --shadow-subtle: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --color-bg: #0f172a;
+            /* Deep Ocean */
+            --color-text: #f8fafc;
+            --color-primary: #2dd4bf;
+            /* Tropical Teal */
+            --color-secondary: #f472b6;
+            /* Sunset Pink */
+            --color-glass: rgba(255, 255, 255, 0.05);
+            --color-glass-border: rgba(255, 255, 255, 0.1);
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        /* RESET */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
             font-family: var(--font-main);
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* UTILITIES */
+        /* --- UTILITIES --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
+            padding: 0 2rem;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-md);
+        h1,
+        h2,
+        h3 {
             font-weight: 700;
-            position: relative;
-            display: inline-block;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-teal), transparent);
-            border-radius: 2px;
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1.125rem;
         }
 
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
+            background: var(--color-primary);
+            color: #0f172a;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: 1px solid var(--accent-teal);
-            color: var(--accent-teal);
-            background: transparent;
+            text-decoration: none;
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+        }
+
+        /* --- SCROLL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s var(--ease-out);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-out) forwards 0.2s;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-out) forwards 0.4s;
+        }
+
+        /* 3D Floating Elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
             z-index: 1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-primary);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--color-secondary);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .hero-img {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .hero-img.left {
+            left: 5%;
+            top: 20%;
+            transform: rotate(-10deg) translateZ(-50px);
+        }
+
+        .hero-img.right {
+            right: 5%;
+            bottom: 20%;
+            transform: rotate(10deg) translateZ(-50px);
+        }
+
+        /* --- SOCIAL PROOF --- */
+        .social-proof {
+            padding: 4rem 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--color-glass-border);
+            border-bottom: 1px solid var(--color-glass-border);
+        }
+
+        .logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            opacity: 0.6;
+        }
+
+        .logos span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- CASE STUDIES --- */
+        .section-padding {
+            padding: 8rem 0;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: var(--color-glass);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
 
-        .btn::before {
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-tag {
+            background: rgba(45, 212, 191, 0.2);
+            color: var(--color-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .animated-service {
+            margin-top: 2rem;
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-service::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 0%;
             height: 100%;
-            background: var(--accent-teal);
-            z-index: -1;
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            color: var(--bg-deep);
-        }
-
-        .btn:hover::before {
             width: 100%;
+            background: var(--color-primary);
+            transform: translateX(-100%);
+            transition: transform 1s ease;
         }
 
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        .card:hover .animated-service::after {
+            transform: translateX(0%);
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-teal);
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--text-primary);
-        }
-
-        nav ul {
-            display: flex;
-            gap: var(--spacing-md);
-        }
-
-        nav a {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        nav a:hover {
-            color: var(--accent-teal);
-        }
-
-        @media(max-width: 768px) {
-            nav {
-                display: none;
-            }
-
-            /* Simplified for mobile demo */
-        }
-
-        /* HERO SECTION with Parallax */
-        #hero {
+        /* --- HOW IT WORKS --- */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-top: 4rem;
             position: relative;
-            min-height: 100vh;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--color-glass-border);
+            z-index: -1;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            padding-top: 80px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
         }
 
-        .parallax-wrap {
-            position: absolute;
-            z-index: -1;
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        /* Positioning Wrappers */
-        .pw-1 {
-            top: 10%;
-            left: -5%;
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        .pw-2 {
-            bottom: 10%;
-            right: -10%;
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .pw-3 {
-            top: 20%;
-            right: 20%;
-        }
-
-        .shape {
+        /* --- GET IN TOUCH --- */
+        .cta-section {
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            padding: 10rem 0;
             position: relative;
-            /* Changed from absolute */
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(255, 111, 97, 0.1));
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.6;
-            display: block;
         }
 
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            animation: float 6s ease-in-out infinite;
+        .cta-section h2 {
+            font-size: 4rem;
         }
 
-        .shape-2 {
-            width: 400px;
-            height: 400px;
-            animation: float 8s ease-in-out infinite reverse;
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #475569;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .shape-3 {
-            width: 150px;
-            height: 150px;
-            border: 2px solid rgba(100, 255, 218, 0.2);
-            background: none;
-            filter: none;
-            animation: spin 20s linear infinite;
-        }
-
+        /* --- ANIMATIONS KEYFRAMES --- */
         @keyframes float {
 
             0%,
@@ -269,631 +356,260 @@
             }
 
             50% {
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
         }
 
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            z-index: 2;
-        }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
 
-        .hero-subtitle {
-            color: var(--accent-teal);
-            font-family: monospace;
-            font-size: 1rem;
-            margin-bottom: var(--spacing-sm);
-            display: block;
-        }
+            .hero-img {
+                display: none;
+            }
 
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: var(--spacing-md);
-            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
 
-        .hero-desc {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-lg);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+            .steps::before {
+                display: none;
+            }
 
-        /* SOCIAL PROOF BANNER */
-        #social-proof {
-            padding: var(--spacing-md) 0;
-            background: rgba(17, 34, 64, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo-scroller {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-            opacity: 0.6;
-        }
-
-        .logo-item {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-item svg {
-            width: 30px;
-            height: 30px;
-            fill: currentColor;
-        }
-
-        /* CASE STUDIES */
-        #case-studies {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-md);
-        }
-
-        .case-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition);
-            position: relative;
-            border: 1px solid transparent;
-        }
-
-        .case-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-teal);
-        }
-
-        .case-image {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-
-        .case-card:hover .case-image {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        .case-content {
-            padding: var(--spacing-md);
-        }
-
-        .case-badge {
-            font-size: 0.8rem;
-            color: var(--accent-coral);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: var(--spacing-xs);
-            display: block;
-        }
-
-        .case-title {
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-
-        .case-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* HOW IT WORKS */
-        #how-it-works {
-            padding: var(--spacing-xl) 0;
-            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-card) 100%);
-        }
-
-        .steps-container {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-lg);
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .steps-container::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            /* Adjust for mobile/desktop alignment */
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--accent-teal);
-            opacity: 0.3;
-        }
-
-        .step-item {
-            display: flex;
-            gap: var(--spacing-md);
-            align-items: flex-start;
-            position: relative;
-        }
-
-        .step-number {
-            min-width: 40px;
-            height: 40px;
-            background: var(--bg-deep);
-            border: 2px solid var(--accent-teal);
-            color: var(--accent-teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            z-index: 2;
-        }
-
-        .step-content {
-            background: var(--bg-deep);
-            padding: var(--spacing-md);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-subtle);
-            flex: 1;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-
-        .step-title {
-            color: var(--accent-teal);
-            margin-bottom: var(--spacing-xs);
-            font-size: 1.2rem;
-        }
-
-        /* SERVICES */
-        #services {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: var(--spacing-md);
-        }
-
-        .service-card {
-            background: rgba(17, 34, 64, 0.7);
-            padding: var(--spacing-md);
-            border-radius: var(--radius);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .service-card:hover {
-            background: var(--bg-card);
-            transform: translateY(-5px);
-            border-color: var(--accent-teal);
-        }
-
-        .service-icon {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--accent-teal);
-        }
-
-        .service-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-xs);
-            color: var(--text-primary);
-        }
-
-        .service-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* GET IN TOUCH */
-        #contact {
-            padding: var(--spacing-xl) 0;
-            text-align: center;
-            background: radial-gradient(circle at center, var(--bg-card) 0%, var(--bg-deep) 100%);
-        }
-
-        .contact-box {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-title {
-            font-size: 2.5rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-
-        .contact-text {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-lg);
-            font-size: 1.1rem;
-        }
-
-        /* ANIMATION UTILS */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* FOOTER */
-        footer {
-            padding: var(--spacing-md) 0;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <div class="container">
-            <a href="#" class="logo">Beachside<span>Notary</span>.</a>
-            <nav>
-                <ul>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#case-studies">Case Studies</a></li>
-                    <li><a href="#contact" class="btn"
-                            style="padding: 0.5rem 1rem; border: 1px solid var(--accent-teal);">Book Now</a></li>
-                </ul>
-            </nav>
+    <header class="hero">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+
+        <img src="https://images.unsplash.com/photo-1555421689-d68471e18963?auto=format&fit=crop&q=80&w=600"
+            alt="Signing documents" class="hero-img left" id="p-left">
+        <img src="https://images.unsplash.com/photo-1593642532400-2682810df593?auto=format&fit=crop&q=80&w=600"
+            alt="Laptop setup" class="hero-img right" id="p-right">
+
+        <div class="container hero-content">
+            <h1>Expert Notary Services.<br>Anywhere in Florida.</h1>
+            <p>From Miami to the Panhandle. In-person or 100% online.<br>Secure, compliant, and effortlessly efficient.
+            </p>
+            <a href="https://cal.com/beachsidemobilenotary" class="btn">Book Instantly</a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="hero">
-        <div class="parallax-layer">
-            <div class="parallax-wrap pw-1">
-                <div class="shape shape-1"></div>
-            </div>
-            <div class="parallax-wrap pw-2">
-                <div class="shape shape-2"></div>
-            </div>
-            <div class="parallax-wrap pw-3">
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
+    <section class="social-proof">
+        <div class="container">
+            <div class="logos reveal">
+                <!-- NNA Certified -->
+                <svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor">
+                    <path d="M10,5 L30,5 L30,35 L10,35 Z M15,10 L25,10 L25,30 L15,30 Z M40,20 L60,5 L80,20 L60,35 Z"
+                        fill-opacity="0.8" />
+                    <text x="50" y="25" font-size="12" font-family="Arial, sans-serif" font-weight="bold"
+                        text-anchor="middle" fill="currentColor">NNA</text>
+                </svg>
 
-        <div class="container hero-content">
-            <span class="hero-subtitle reveal">REMOTE ONLINE NOTARIZATION</span>
-            <h1 class="hero-title reveal" style="transition-delay: 100ms;">Notarization at the <br> Speed of Life.</h1>
-            <p class="hero-desc reveal" style="transition-delay: 200ms;">
-                a Florida-commissioned notary service dedicated to making notarization easy, accessible, and secure.
-                From real estate closings to affidavits and power of attorney, we handle it all with professionalism and
-                prompt service.
-            </p>
-            <div class="reveal" style="transition-delay: 300ms;">
-                <a href="#contact" class="btn">Start Notarization</a>
+                <!-- DocuSign -->
+                <svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor">
+                    <path
+                        d="M10,10 Q10,5 15,5 L105,5 Q110,5 110,10 L110,30 Q110,35 105,35 L15,35 Q10,35 10,30 Z M20,15 L20,25 L30,25 L30,15 Z"
+                        fill-opacity="0.8" />
+                    <text x="70" y="25" font-size="14" font-family="Arial, sans-serif" font-weight="bold"
+                        text-anchor="middle" fill="currentColor">DocuSign</text>
+                </svg>
+
+                <!-- Pavaso -->
+                <svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor">
+                    <circle cx="20" cy="20" r="15" fill-opacity="0.8" />
+                    <text x="60" y="25" font-size="14" font-family="Arial, sans-serif" font-weight="bold"
+                        text-anchor="middle" fill="currentColor">Pavaso</text>
+                </svg>
+
+                <!-- Notarize -->
+                <svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor">
+                    <path d="M10,20 L20,5 L30,20 L20,35 Z" fill-opacity="0.8" />
+                    <text x="75" y="25" font-size="14" font-family="Arial, sans-serif" font-weight="bold"
+                        text-anchor="middle" fill="currentColor">Notarize</text>
+                </svg>
+
+                <!-- RON Commissioned -->
+                <svg width="140" height="40" viewBox="0 0 140 40" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor">
+                    <rect x="5" y="5" width="130" height="30" rx="15" ry="15" stroke="currentColor" stroke-width="2"
+                        fill="none" />
+                    <text x="70" y="25" font-size="12" font-family="Arial, sans-serif" font-weight="bold"
+                        text-anchor="middle" fill="currentColor">RON READY</text>
+                </svg>
             </div>
         </div>
     </section>
 
-    <!-- SOCIAL PROOF BANNER -->
-    <section id="social-proof">
+    <section class="section-padding">
         <div class="container">
-            <div class="logo-scroller">
-                <!-- Using generic placeholders for tech vibe -->
-                <div class="logo-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
-                    </svg>
-                    DocuSign
+            <h2 class="reveal">Proven Reliability.</h2>
+            <div class="case-studies-grid">
+
+                <div class="card reveal">
+                    <span class="card-tag">Remote Online (RON)</span>
+                    <h3>The Midnight Closing</h3>
+                    <p>A client in London needed to close on a Miami condo at 2 AM EST. We utilized secure biometric ID
+                        verification and digital seals to close the deal in 15 minutes.</p>
+                    <div class="animated-service"></div>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#fff;">Result: Closed on time.</p>
                 </div>
-                <div class="logo-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-                    </svg>
-                    Notarize
+
+                <div class="card reveal" style="transition-delay: 100ms;">
+                    <span class="card-tag">Mobile Service</span>
+                    <h3>The Hospital Rush</h3>
+                    <p>An urgent Power of Attorney was needed for a patient at Baptist Hospital. We arrived within 45
+                        minutes, handled the witnesses, and ensured full legal compliance.</p>
+                    <div class="animated-service"></div>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#fff;">Result: Family peace of mind.</p>
                 </div>
-                <div class="logo-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z" />
-                    </svg>
-                    Pavaso
+
+                <div class="card reveal" style="transition-delay: 200ms;">
+                    <span class="card-tag">Loan Signing</span>
+                    <h3>The Jumbo Loan</h3>
+                    <p>A 200-page refi package requiring white-glove handling. Printed, flagged, signed at the client’s
+                        kitchen table, and FedExed back before the cutoff.</p>
+                    <div class="animated-service"></div>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#fff;">Result: Zero funding conditions.</p>
                 </div>
-                <div class="logo-item">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
-                    </svg>
-                    BlueNotary
-                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- WHY CHOOSE US -->
-    <section id="why-choose-us" style="padding: var(--spacing-xl) 0; background: var(--bg-deep);">
+    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="section-title reveal">Why Choose Us?</h2>
-            <ul style="list-style: none; margin-bottom: var(--spacing-md);">
-                <li class="reveal"
-                    style="font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                    <span style="color: var(--accent-teal);">•</span> Florida-Commissioned Notary Public
-                </li>
-                <li class="reveal"
-                    style="transition-delay: 100ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                    <span style="color: var(--accent-teal);">•</span> Certified Loan Signing Agent
-                </li>
-                <li class="reveal"
-                    style="transition-delay: 200ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                    <span style="color: var(--accent-teal);">•</span> Bonded & Insured
-                </li>
-                <li class="reveal"
-                    style="transition-delay: 300ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                    <span style="color: var(--accent-teal);">•</span> Secure & Confidential
-                </li>
-                <li class="reveal"
-                    style="transition-delay: 400ms; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                    <span style="color: var(--accent-teal);">•</span> Available 7 Days a Week
-                </li>
-            </ul>
-            <div class="reveal"
-                style="margin-top: var(--spacing-md); display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center;">
-                <div
-                    style="background: rgba(255,255,255,0.05); padding: 1rem 2rem; border-radius: var(--radius); border: 1px solid var(--accent-teal);">
-                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">NNA Certified</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">National Notary Association</p>
+            <h2 class="reveal">Frictionless Process.</h2>
+            <div class="steps reveal">
+
+                <div class="step">
+                    <div class="step-circle">1</div>
+                    <h3>Select & Schedule</h3>
+                    <p>Choose your service type (Online or In-Person) via our live calendar. Upfront pricing means no
+                        hidden fees.</p>
                 </div>
-                <div
-                    style="background: rgba(255,255,255,0.05); padding: 1rem 2rem; border-radius: var(--radius); border: 1px solid var(--accent-teal);">
-                    <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;">NNA Notary Signing Agent</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Certified for 2025</p>
+
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <h3>Verify Identity</h3>
+                    <p>For online notarizations, we use bank-grade KBA authentication. For in-person, we verify ID on
+                        arrival.</p>
                 </div>
+
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <h3>Sign & Done</h3>
+                    <p>We apply the seal. You receive digital copies instantly, or we handle the courier shipping for
+                        you.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- CASE STUDIES -->
-    <section id="case-studies">
+    <section class="section-padding">
         <div class="container">
-            <h2 class="section-title reveal">Success Stories</h2>
-            <div class="case-grid">
-                <!-- Case 1 -->
-                <article class="case-card reveal" style="transition-delay: 100ms;">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                        alt="Real Estate" class="case-image">
-                    <div class="case-content">
-                        <span class="case-badge">Real Estate</span>
-                        <h3 class="case-title">The Midnight Closing</h3>
-                        <p class="case-desc">Facilitated a strict deadline closing for an international buyer across 3
-                            time zones in under 30 minutes.</p>
-                    </div>
-                </article>
-                <!-- Case 2 -->
-                <article class="case-card reveal" style="transition-delay: 200ms;">
-                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                        alt="Legal" class="case-image">
-                    <div class="case-content">
-                        <span class="case-badge">Legal</span>
-                        <h3 class="case-title">Urgent Power of Attorney</h3>
-                        <p class="case-desc">Empowered a family to handle medical decisions instantly with a secure,
-                            remote POA notarization.</p>
-                    </div>
-                </article>
-                <!-- Case 3 -->
-                <article class="case-card reveal" style="transition-delay: 300ms;">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                        alt="Business" class="case-image">
-                    <div class="case-content">
-                        <span class="case-badge">Business</span>
-                        <h3 class="case-title">Tech Startup Funding</h3>
-                        <p class="case-desc">Notarized critical equity documents for a Series A round, keeping their
-                            momentum seamless.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works">
-        <div class="container">
-            <h2 class="section-title reveal">How It Works</h2>
-            <div class="steps-container">
-                <div class="step-item reveal">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Book Instantly</h3>
-                        <p>Use our seamless scheduler to pick a time that works for you. No forms, just direct calendar
-                            access.</p>
-                    </div>
+            <h2 class="reveal">Comprehensive Services.</h2>
+            <div class="services-grid reveal">
+                <div class="card">
+                    <h3>Remote Online Notary</h3>
+                    <p>Notarize documents via webcam from anywhere in the world.</p>
                 </div>
-                <div class="step-item reveal">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Upload & Verify</h3>
-                        <p>Securely upload your documents and verify your identity using our bank-grade encryption
-                            platform.</p>
-                    </div>
+                <div class="card">
+                    <h3>Mobile Notary Visits</h3>
+                    <p>We travel to your home, office, hospital, or coffee shop.</p>
                 </div>
-                <div class="step-item reveal">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Connect Live</h3>
-                        <p>Meet with your expert notary via video call to sign and notarize your documents in real-time.
-                        </p>
-                    </div>
+                <div class="card">
+                    <h3>Loan Signing Agent</h3>
+                    <p>Refinance, Purchase, HELOC, and Reverse Mortgages.</p>
+                </div>
+                <div class="card">
+                    <h3>Estate Planning</h3>
+                    <p>Wills, Trusts, and Power of Attorney executions.</p>
+                </div>
+                <div class="card">
+                    <h3>Apostille Assistance</h3>
+                    <p>Full concierge service for international document authentication.</p>
+                </div>
+                <div class="card">
+                    <h3>Wedding Officiant</h3>
+                    <p>Official ceremonies and license signing across Florida.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="container">
-            <h2 class="section-title reveal">Expert Services</h2>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="service-icon">💻</div>
-                    <h3 class="service-title">Remote Online Notarization</h3>
-                    <p class="service-desc">Fully digital, secure, and legally binding nationwide.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 100ms;">
-                    <div class="service-icon">🚗</div>
-                    <h3 class="service-title">Mobile Notary Visits</h3>
-                    <p class="service-desc">We come to your home, office, or beachside location.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 200ms;">
-                    <div class="service-icon">🏠</div>
-                    <h3 class="service-title">Loan Signing Agent</h3>
-                    <p class="service-desc">Specialized support for seamless real estate closings.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 300ms;">
-                    <div class="service-icon">📝</div>
-                    <h3 class="service-title">Real Estate Closings</h3>
-                    <p class="service-desc">Refinances, purchases, HELOCs, and seller packages.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">⚖️</div>
-                    <h3 class="service-title">Power of Attorney & Wills</h3>
-                    <p class="service-desc">Sensitive legal documents handled with care.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 100ms;">
-                    <div class="service-icon">🌍</div>
-                    <h3 class="service-title">Apostille Assistance</h3>
-                    <p class="service-desc">Helping authenticate documents for international use.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 200ms;">
-                    <div class="service-icon">📄</div>
-                    <h3 class="service-title">General Documents</h3>
-                    <p class="service-desc">Business, legal, and personal affidavits.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 300ms;">
-                    <div class="service-icon">💍</div>
-                    <h3 class="service-title">Wedding Officiant</h3>
-                    <p class="service-desc">Making your special day official and legal.</p>
-                </div>
-            </div>
-            <p class="reveal" style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
-                Don’t see your document type? Just ask — we’ve likely handled it before.
+    <section class="cta-section">
+        <div class="floating-shape shape-1"
+            style="opacity:0.2; width:600px; height:600px; left:50%; transform:translateX(-50%);"></div>
+        <div class="container reveal">
+            <h2>Ready to sign?</h2>
+            <p style="margin-bottom: 3rem;">Skip the quote request. Book your time slot now.</p>
+            <a href="https://cal.com/beachsidemobilenotary" class="btn">View Calendar & Book</a>
+
+            <p class="disclaimer">
+                Disclaimer: We are not attorneys licensed to practice law in the State of Florida, and we may not give
+                legal advice or accept fees for legal advice.
             </p>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container contact-box">
-            <h2 class="contact-title reveal">Ready to Sign?</h2>
-            <p class="contact-text reveal">
-                Skip the back-and-forth emails. View our availability and secure your spot instantly.
-            </p>
-            <div class="reveal">
-                <a href="https://cal.com/beachsidemobilenotary" class="btn"
-                    style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">Book Appointment</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div
-                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;">
-                <div style="text-align: left;">
-                    <p>&copy; Beachside Notary. All rights reserved.</p>
-                    <p
-                        style="margin-top: 0.5rem; font-size: 0.75rem; max-width: 600px; color: var(--text-secondary); opacity: 0.8;">
-                        We proudly serve clients throughout the state of Florida. Remote notarization is performed in
-                        compliance with Florida Statutes Chapter 117.
-                    </p>
-                </div>
-                <div style="display: flex; gap: 1.5rem;">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                        style="color: var(--text-primary); transition: color 0.3s;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="mailto:info@beachsidenotary.com" aria-label="Email"
-                        style="color: var(--text-primary); transition: color 0.3s;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SCRIPTS -->
     <script>
-        // Scroll Reveal Animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
+        // --- SCROLL REVEAL ANIMATION ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
+        }, observerOptions);
 
-            // Parallax Effect for Hero Shapes
-            const heroSection = document.getElementById('hero');
-            const layers = document.querySelectorAll('.parallax-wrap');
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
 
-            heroSection.addEventListener('mousemove', (e) => {
-                const x = (window.innerWidth - e.pageX * 2) / 100;
-                const y = (window.innerHeight - e.pageY * 2) / 100;
+        // --- PARALLAX EFFECT FOR HERO IMAGES ---
+        const pLeft = document.getElementById('p-left');
+        const pRight = document.getElementById('p-right');
 
-                layers.forEach((layer, index) => {
-                    const speed = (index + 1) * 2;
-                    layer.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
-                });
-            });
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            if (scroll < 800) {
+                // Subtle rotation and Y movement based on scroll
+                pLeft.style.transform = `rotate(-10deg) translateY(${scroll * -0.2}px)`;
+                pRight.style.transform = `rotate(10deg) translateY(${scroll * -0.1}px)`;
+            }
         });
     </script>
 </body>
